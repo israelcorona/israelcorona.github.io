@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a popup on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [35.2648, 31.712],
+        zoom: 6
+    });
+    
+    map.on('load', function() {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>The Greek Tourists</strong><p>Jerusalem</p>',
+                            'icon': 'marker'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.22, 31.78]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Mount Tabor Monastery</strong><p>Thu 20 Feb 2020 09:00:00-Thu 20 Feb 2020 10:30:00</p><p> - </p><p>Kfar Tavor - Kfar Tavor</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3924, 32.6862]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Basilica of the Annunciation</strong><p>Thu 20 Feb 2020 11:00:00-</p><p>Al-Bishara St 12 - Al-Bishara St 12</p><p>Nazerat - Nazerat</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2972, 32.7022]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Greek Orthodox Church</strong><p>Thu 20 Feb 2020 12:00:00-</p><p>Greek Orthodox Church - Greek Orthodox Church</p><p>Kafar Kanna - Kafar Kanna</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3378, 32.7471]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Ein Sheva/Tabigha</strong><p>Thu 20 Feb 2020 15:00:00-Thu 20 Feb 2020 15:30:00</p><p> - </p><p>Tabigha - Tabigha</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.5504, 32.8718]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Yardenit Baptism Site, Beit Yareh</strong><p>Thu 20 Feb 2020 16:30:00-Thu 20 Feb 2020 17:30:00</p><p> - </p><p>Yardenit - Yardenit</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.5711, 32.711]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Dead Sea at Ein Boqeq</strong><p>Fri 21 Feb 2020 07:30:00-Fri 21 Feb 2020 08:00:00</p><p> - </p><p>Ein Boqeq - Ein Boqeq</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3653, 31.2026]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Restaurant</strong><p>Fri 21 Feb 2020 10:30:00-Fri 21 Feb 2020 11:00:00</p><p> - </p><p>Yotvata - Yotvata</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.061, 29.8963]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Eilat Observatory</strong><p>Sun 23 Feb 2020 15:30:00-Sun 23 Feb 2020 17:30:00</p><p>Eilat Observatory - Eilat Observatory</p><p>Elat - Elat</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.9191, 29.504]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Restaurant</strong><p>Sun 23 Feb 2020 18:00:00-Sun 23 Feb 2020 18:30:00</p><p> - </p><p>Yotvata - Yotvata</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.061, 29.8963]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Mar Saba Monastery</strong><p>Mon 24 Feb 2020 08:00:00-Mon 24 Feb 2020 10:30:00</p><p> - </p><p>Mar Saba - Mar Saba</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3313, 31.7049]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Tomb of the Virgin and Church of All Nations</strong><p>Mon 24 Feb 2020 13:30:00-Mon 24 Feb 2020 17:00:00</p><p> - </p><p>Jerusalem - Jerusalem</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2394, 31.78]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>St. George/Mar Jaris Monastery</strong><p>Tue 25 Feb 2020 08:00:00-Tue 25 Feb 2020 10:00:00</p><p>Mar Jaris Monastery - Mar Jaris Monastery</p><p>Aqabah Jabbar - Aqabah Jabbar</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.4141, 31.8444]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Church of Martha, Mary and Lazarus</strong><p>Tue 25 Feb 2020 10:30:00-Tue 25 Feb 2020 11:45:00</p><p>Church of Lazarus - Church of Lazarus</p><p>al‐Ayzariyah - al‐Ayzariyah</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2562, 31.7716]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Mar Saba Monastery</strong><p>Tue 25 Feb 2020 12:30:00-</p><p> - </p><p>Mar Saba - Mar Saba</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3313, 31.7049]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Qarantal Monastery</strong><p>Wed 26 Feb 2020 11:00:00-</p><p>Qarantal Monastery - Qarantal Monastery</p><p>Ariha - Ariha</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.4305, 31.8744]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Deir Hajalah</strong><p>Wed 26 Feb 2020 13:10:00-Wed 26 Feb 2020 14:20:00</p><p>Deir Hijleh - Deir Hijleh</p><p>Ariha - Ariha</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.5015, 31.8202]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Church of Holy Sepulchre</strong><p>Wed 26 Feb 2020 18:40:00-Thu 27 Feb 2020 03:10:00</p><p>Church of Holy Sepulchre - Church of Holy Sepulchre</p><p>Jerusalem - Jerusalem</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2296, 31.7783]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Church of St George</strong><p>Thu 27 Feb 2020 16:00:00-Thu 27 Feb 2020 16:40:00</p><p>Church of St George - Church of St George</p><p>Lod - Lod</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8994, 31.953]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>The group left Israel on Aegean Airlines flight number A3925</strong><p>-</p><p>Ben Gurion Airport - </p><p>Ben Gurion International Airport - </p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8867, 32.0114]
+                        }
+                    }
+                ]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}-15',
+                'icon-allow-overlap': true,
+                'icon-size': 5
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'places', function(e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', function() {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', function() {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+</script>
+
+</body>
+</html>
