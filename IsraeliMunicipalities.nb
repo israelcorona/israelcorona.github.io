@@ -1,0 +1,569 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     28769,        561]
+NotebookOptionsPosition[     26941,        522]
+NotebookOutlinePosition[     27278,        537]
+CellTagsIndexPosition[     27235,        534]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "[", 
+  "\"\</Users/zhuohuizhang/Dropbox/israelcases\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rawmuni", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<IsraelMunicipalities.xlsx\>\"", ",", "\"\<XLSX\>\""}], 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.79286998897332*^9, 3.7928700453404093`*^9}},
+ CellLabel->
+  "In[551]:=",ExpressionUUID->"f219ddb7-85e9-4f45-b587-a8f9fb894c64"],
+
+Cell[BoxData["\<\"/Users/zhuohuizhang/Dropbox/IsraelCases\"\>"], "Output",
+ CellChangeTimes->{
+  3.792870045704997*^9, {3.792870076614259*^9, 3.792870092343351*^9}, 
+   3.792871112649704*^9, 3.7928724658903913`*^9, 3.792872579467949*^9, 
+   3.7928728334808826`*^9, 3.79287298048225*^9, 3.792873036451127*^9, 
+   3.792873168308586*^9, 3.792873363003127*^9, 3.7928736092473*^9, 
+   3.792873649449809*^9, 3.7928736947244596`*^9, 3.792873892240902*^9, 
+   3.79287626713278*^9, 3.7928763846228933`*^9, 3.792876816407346*^9, 
+   3.792876880981279*^9},
+ CellLabel->
+  "Out[551]=",ExpressionUUID->"3c711bac-9597-4fc7-a1d9-6d6a35b57081"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"AmbiguousCharacters1", "=", 
+   RowBox[{"{", 
+    RowBox[{"\"\<\\\"\>\"", ",", "\"\<\[CloseCurlyDoubleQuote]\>\""}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AmbiguousCharacters2", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<'\>\"", ",", "\"\<'\>\"", ",", "\"\<\:05f3\>\"", ",", 
+     "\"\<\[CloseCurlyQuote]\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"AmbiguousCharacters3", "=", 
+   RowBox[{"{", "\"\<-\>\"", "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.792877028421069*^9, 3.7928771647804127`*^9}},
+ CellLabel->
+  "In[565]:=",ExpressionUUID->"9a99dfb1-680f-48a9-9f14-ba3411f8046e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CreateStringPolymorphism", "[", "rule_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"allchar1", ",", "allchar2", ",", "allchar3"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"allchar1", "=", 
+      RowBox[{"StringCases", "[", 
+       RowBox[{
+        RowBox[{
+        "rule", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+        "AmbiguousCharacters1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"allchar2", "=", 
+      RowBox[{"StringCases", "[", 
+       RowBox[{
+        RowBox[{
+        "rule", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+        "AmbiguousCharacters2"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"allchar3", "=", 
+      RowBox[{"StringCases", "[", 
+       RowBox[{
+        RowBox[{
+        "rule", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+        "AmbiguousCharacters3"}], "]"}]}], ";"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.792877171835002*^9, 3.79287723805118*^9}, {
+  3.792877268505575*^9, 3.792877363066968*^9}, {3.792877636033587*^9, 
+  3.792877636456002*^9}},
+ CellLabel->
+  "In[570]:=",ExpressionUUID->"08c9c4f6-5aff-4415-bd16-0c4224839d9e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"IsraelMunicipalitiesHebToEng", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"#", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+       "\[Rule]", 
+       RowBox[{"#", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+      "&"}], "/@", 
+     RowBox[{
+      RowBox[{"Join", "[", 
+       RowBox[{
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"rawmuni", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "1"}], "&"}]}], 
+         "]"}], ",", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"rawmuni", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "1"}], "&"}]}], 
+         "]"}], ",", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"rawmuni", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "1"}], "&"}]}], 
+         "]"}], ",", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"rawmuni", "[", 
+           RowBox[{"[", "4", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], "\[Equal]", "1"}], "&"}]}], 
+         "]"}]}], "]"}], "\[LeftDoubleBracket]", 
+      RowBox[{"All", ",", 
+       RowBox[{"1", ";;", "2"}]}], "\[RightDoubleBracket]"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.792870046984294*^9, 3.792870228578657*^9}, 
+   3.792870716911626*^9, 3.792873607797171*^9, {3.7928762622360907`*^9, 
+   3.792876262760808*^9}, {3.79287640139852*^9, 3.79287644839277*^9}},
+ CellLabel->
+  "In[553]:=",ExpressionUUID->"085fec44-2cf0-4464-aeb7-9c680c75dfd3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"IsraelMunicipalitiesHebrew", "=", 
+   RowBox[{"Keys", "[", "IsraelMunicipalitiesHebToEng", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.792877655375189*^9, 3.792877670516076*^9}},
+ CellLabel->
+  "In[571]:=",ExpressionUUID->"665da2ee-1920-4d2d-9857-f1f4d00cb349"],
+
+Cell[CellGroupData[{
+
+Cell["Wolfram List of Cities", "Subsubsection",
+ CellChangeTimes->{{3.792870707655867*^9, 
+  3.792870712238007*^9}},ExpressionUUID->"55934b83-9cb6-434f-a90b-\
+a891e20919ec"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WolframNamesIsraeliCities", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Abu Ghosh\>\"", ",", "\"\<Adi\>\"", ",", "\"\<Afula\>\"", ",", 
+     "\"\<Akko\>\"", ",", "\"\<al\[Hyphen]Burj\>\"", ",", 
+     "\"\<al\[Hyphen]Jalamah\>\"", ",", "\"\<al\[Hyphen]Judayrah\>\"", ",", 
+     "\"\<Arad\>\"", ",", "\"\<Arara\[Hyphen]BaNegev\>\"", ",", 
+     "\"\<Arara\>\"", ",", "\"\<Arrabe\>\"", ",", "\"\<Ashdod\>\"", ",", 
+     "\"\<Ashqelon\>\"", ",", "\"\<Atlit\>\"", ",", "\"\<Aydah\>\"", ",", 
+     "\"\<Azur\>\"", ",", "\"\<Baqa\[Hyphen]Jatt\>\"", ",", "\"\<Basma\>\"", 
+     ",", "\"\<Basmat Tabun\>\"", ",", "\"\<Bat Hefer\>\"", ",", 
+     "\"\<Bat Yam\>\"", ",", "\"\<Beer Sheva\>\"", ",", "\"\<Beer Yaaqov\>\"",
+      ",", "\"\<Beit Jann\>\"", ",", "\"\<Bene Ayish\>\"", ",", 
+     "\"\<Bene Beraq\>\"", ",", "\"\<Bet Dagan\>\"", ",", "\"\<Bet Shean\>\"",
+      ",", "\"\<Bet Shemesh\>\"", ",", "\"\<Bet Yizhaq\>\"", ",", 
+     "\"\<Binyamina\[Hyphen]Givat Ada\>\"", ",", 
+     "\"\<Bir El\[Hyphen]Maksur\>\"", ",", "\"\<Bueine\[Hyphen]Nujeidat\>\"", 
+     ",", "\"\<Buqata\>\"", ",", "\"\<Dabburiyya\>\"", ",", 
+     "\"\<Daliyat Al Karmel\[Hyphen]Isifya\>\"", ",", "\"\<Deir Hanna\>\"", 
+     ",", "\"\<Dimona\>\"", ",", "\"\<Eilabun\>\"", ",", "\"\<Ein Mahel\>\"", 
+     ",", "\"\<Ein Naqquba\>\"", ",", "\"\<Elad\>\"", ",", "\"\<Elat\>\"", 
+     ",", "\"\<Elyakhin\>\"", ",", "\"\<Even Yehuda\>\"", ",", 
+     "\"\<Fassuta\>\"", ",", "\"\<Fureidis\>\"", ",", "\"\<Gan Ner\>\"", ",", 
+     "\"\<Ganne Tiqwa\>\"", ",", "\"\<Gan Yavne\>\"", ",", "\"\<Gedera\>\"", 
+     ",", "\"\<Givat Avni\>\"", ",", "\"\<Givatayim\>\"", ",", 
+     "\"\<Givat Ela\>\"", ",", "\"\<Givat Shemuel\>\"", ",", 
+     "\"\<Glil Yam\>\"", ",", "\"\<Hadera\>\"", ",", "\"\<Haifa\>\"", ",", 
+     "\"\<Hazor HaGelilit\>\"", ",", "\"\<Herzeliyya\>\"", ",", 
+     "\"\<Hod HaSharon\>\"", ",", "\"\<Holon\>\"", ",", "\"\<Hura\>\"", ",", 
+     "\"\<Hurfeish\>\"", ",", "\"\<Ibillin\>\"", ",", "\"\<Ibtin\>\"", ",", 
+     "\"\<Iksal\>\"", ",", "\"\<Ilut\>\"", ",", "\"\<Ir Hahamisha\>\"", ",", 
+     "\"\<Jaffa\>\"", ",", "\"\<Jaljulye\>\"", ",", "\"\<Jerusalem\>\"", ",", 
+     "\"\<Jish\>\"", ",", "\"\<Jisr Az\[Hyphen]Zarqa\>\"", ",", 
+     "\"\<Judeide\[Hyphen]Maker\>\"", ",", 
+     "\"\<Kaabiyye\[Hyphen]Tabbash\[Hyphen]Hajaj\>\"", ",", "\"\<Kabul\>\"", 
+     ",", "\"\<Kafar Bara\>\"", ",", "\"\<Kafar Kama\>\"", ",", 
+     "\"\<Kafar Kanna\>\"", ",", "\"\<Kafar Manda\>\"", ",", 
+     "\"\<Kafar Misr\>\"", ",", "\"\<Kafar Qara\>\"", ",", 
+     "\"\<Kafar Qasem\>\"", ",", "\"\<Kafar Yasif\>\"", ",", 
+     "\"\<Kaokab Abu Al\[Hyphen]Hija\>\"", ",", "\"\<Karme Yosef\>\"", ",", 
+     "\"\<Karmiel\>\"", ",", "\"\<Kefar Habad\>\"", ",", "\"\<Kefar Sava\>\"",
+      ",", "\"\<Kefar Shemaryahu\>\"", ",", "\"\<Kfar Tavor\>\"", ",", 
+     "\"\<Kefar Weradim\>\"", ",", "\"\<Kefar Yona\>\"", ",", 
+     "\"\<Kisra\[Hyphen]Sumei\>\"", ",", "\"\<Kokhav Yair\>\"", ",", 
+     "\"\<Kuseife\>\"", ",", "\"\<Lappid\>\"", ",", "\"\<Laqye\>\"", ",", 
+     "\"\<Lehavim\>\"", ",", "\"\<Lod\>\"", ",", "\"\<Maale Iron\>\"", ",", 
+     "\"\<Maalot\[Hyphen]Tarshiha\>\"", ",", "\"\<Majdal Shams\>\"", ",", 
+     "\"\<Masade\>\"", ",", "\"\<Mashhed\>\"", ",", "\"\<Mattan\>\"", ",", 
+     "\"\<Mazkeret Batya\>\"", ",", "\"\<Mazraa\>\"", ",", 
+     "\"\<Merkaz Shappira\>\"", ",", "\"\<Metar\>\"", ",", 
+     "\"\<Mevasserat Ziyyon\>\"", ",", "\"\<Mielya\>\"", ",", 
+     "\"\<Migdal HaEmeq\>\"", ",", "\"\<Mizpe Ramon\>\"", ",", 
+     "\"\<Modiin\[Hyphen]Makkabim\[Hyphen]Reut\>\"", ",", "\"\<Mugar\>\"", 
+     ",", "\"\<Muqeible\>\"", ",", "\"\<Nahariyya\>\"", ",", "\"\<Nahef\>\"", 
+     ",", "\"\<Naura\>\"", ",", "\"\<Nazerat Illit\>\"", ",", 
+     "\"\<Nazerat\>\"", ",", "\"\<Nehalim\>\"", ",", "\"\<Nein\>\"", ",", 
+     "\"\<Nesher\>\"", ",", "\"\<Nes Ziyyona\>\"", ",", "\"\<Netanya\>\"", 
+     ",", "\"\<Netivot\>\"", ",", "\"\<Nof Ayyalon\>\"", ",", "\"\<Nofit\>\"",
+      ",", "\"\<Nordiyya\>\"", ",", "\"\<Ofaqim\>\"", ",", "\"\<Omer\>\"", 
+     ",", "\"\<Oranit\>\"", ",", "\"\<Or Aqiva\>\"", ",", "\"\<Or Yehuda\>\"",
+      ",", "\"\<Pardes Hanna\[Hyphen]Karkur\>\"", ",", "\"\<Pardesiyya\>\"", 
+     ",", "\"\<Peqiin\>\"", ",", "\"\<Petah Tiqwa\>\"", ",", 
+     "\"\<Qalansawe\>\"", ",", "\"\<QaTannah\>\"", ",", 
+     "\"\<Qazir\[Hyphen]Harish\>\"", ",", "\"\<Qazrin\>\"", ",", 
+     "\"\<Caesarea\>\"", ",", "\"\<Qiryat Atta\>\"", ",", 
+     "\"\<Qiryat Bialik\>\"", ",", "\"\<Qiryat Eqron\>\"", ",", 
+     "\"\<Qiryat Gat\>\"", ",", "\"\<Qiryat Malakhi\>\"", ",", 
+     "\"\<Qiryat Motzkin\>\"", ",", "\"\<Qiryat Ono\>\"", ",", 
+     "\"\<Qiryat Shemona\>\"", ",", "\"\<Qiryat Tivon\>\"", ",", 
+     "\"\<Qiryat Yam\>\"", ",", "\"\<Qiryat Yearim\>\"", ",", 
+     "\"\<Raanana\>\"", ",", "\"\<Rahat\>\"", ",", "\"\<Ramat Efal\>\"", ",", 
+     "\"\<Ramat Gan\>\"", ",", "\"\<Ramat HaSharon\>\"", ",", 
+     "\"\<Ramat Yishay\>\"", ",", "\"\<Rame\>\"", ",", "\"\<Ramla\>\"", ",", 
+     "\"\<Rehovot\>\"", ",", "\"\<Reine\>\"", ",", "\"\<Rekhasim\>\"", ",", 
+     "\"\<Rishon LeZiyyon\>\"", ",", "\"\<Rosh HaAyin\>\"", ",", 
+     "\"\<Rosh Pinna\>\"", ",", "\"\<Rumat Heib\>\"", ",", "\"\<Sajur\>\"", 
+     ",", "\"\<Sakhnin\>\"", ",", "\"\<Sallama\>\"", ",", "\"\<Savyon\>\"", 
+     ",", "\"\<Sederot\>\"", ",", "\"\<Segev\[Hyphen]Shalom\>\"", ",", 
+     "\"\<Shaab\>\"", ",", "\"\<Shagor\>\"", ",", "\"\<Shefaram\>\"", ",", 
+     "\"\<Sheikh Dannun\>\"", ",", 
+     "\"\<Shibli\[Hyphen]Umm Al\[Hyphen]Ghanam\>\"", ",", "\"\<Shoham\>\"", 
+     ",", "\"\<Sulam\>\"", ",", "\"\<Tamra\>\"", ",", "\"\<Tayibe\>\"", ",", 
+     "\"\<Tel Aviv\>\"", ",", "\"\<Tel Mond\>\"", ",", "\"\<Tel Sheva\>\"", 
+     ",", "\"\<Tiberias\>\"", ",", "\"\<Timrat\>\"", ",", 
+     "\"\<Tirat Karmel\>\"", ",", "\"\<Tirat Zvi\>\"", ",", "\"\<Tire\>\"", 
+     ",", "\"\<Tuba\[Hyphen]Zangariyye\>\"", ",", "\"\<Turan\>\"", ",", 
+     "\"\<Umm Al\[Hyphen]Fahm\>\"", ",", "\"\<Uzeir\>\"", ",", "\"\<Yafi\>\"",
+      ",", "\"\<Yavneel\>\"", ",", "\"\<Yavne\>\"", ",", "\"\<Yehud\>\"", 
+     ",", "\"\<Yehud\[Hyphen]Newe Efrayim\>\"", ",", "\"\<Yeroham\>\"", ",", 
+     "\"\<Yoqneam Illit\>\"", ",", "\"\<Zarzir\>\"", ",", "\"\<Zefat\>\"", 
+     ",", "\"\<Zemer\>\"", ",", "\"\<Zikhron Ya'akov\>\"", ",", 
+     "\"\<Zikhron Yaaqov\>\"", ",", "\"\<Zoran\[Hyphen]Qadima\>\"", ",", 
+     "\"\<Zububa\>\"", ",", "\"\<Zur Hadassa\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"WolframWestBankCities", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Abu Dis\>\"", ",", "\"\<Abud\>\"", ",", "\"\<Abwein\>\"", ",", 
+     "\"\<ad\[Hyphen]Duhaysah\>\"", ",", "\"\<Ajjah\>\"", ",", 
+     "\"\<al\[Hyphen]Amarri\>\"", ",", "\"\<al\[Hyphen]Araqah\>\"", ",", 
+     "\"\<al\[Hyphen]Arrub\>\"", ",", "\"\<al\[Hyphen]Awja\>\"", ",", 
+     "\"\<al\[Hyphen]Ayzariyah\>\"", ",", "\"\<al\[Hyphen]Birah\>\"", ",", 
+     "\"\<al\[Hyphen]Fandaqumiyah\>\"", ",", "\"\<al\[Hyphen]Farah\>\"", ",", 
+     "\"\<al\[Hyphen]Fawwar\>\"", ",", "\"\<Alfe Menashe\>\"", ",", 
+     "\"\<al\[Hyphen]Hadr\>\"", ",", "\"\<al\[Hyphen]Jalazun\>\"", ",", 
+     "\"\<al\[Hyphen]Jib\>\"", ",", "\"\<al\[Hyphen]Jiftlik\>\"", ",", 
+     "\"\<al\[Hyphen]Judaydah\>\"", ",", "\"\<al\[Hyphen]Judayrah\>\"", ",", 
+     "\"\<al\[Hyphen]Karmil\>\"", ",", "\"\<Allon Shevut\>\"", ",", 
+     "\"\<al\[Hyphen]Lubban as\[Hyphen]Sarqiyah\>\"", ",", 
+     "\"\<al\[Hyphen]Mazraah as\[Hyphen]Sarqiyah\>\"", ",", 
+     "\"\<al\[Hyphen]Mugayyir\>\"", ",", "\"\<al\[Hyphen]Mugayyir\>\"", ",", 
+     "\"\<al\[Hyphen]Qubaybah\>\"", ",", "\"\<al\[Hyphen]Ubaydiyah\>\"", ",", 
+     "\"\<al\[Hyphen]Yamun\>\"", ",", "\"\<Al-Zaitounah\>\"", ",", 
+     "\"\<Anabta\>\"", ",", "\"\<Anata\>\"", ",", "\"\<Anin\>\"", ",", 
+     "\"\<Anzah\>\"", ",", "\"\<Aqbah Jabbar\>\"", ",", "\"\<Aqqaba\>\"", 
+     ",", "\"\<Aqraba\>\"", ",", "\"\<Ariel\>\"", ",", "\"\<Ariha\>\"", ",", 
+     "\"\<Arrabah\>\"", ",", "\"\<ar\[Hyphen]Ram\>\"", ",", "\"\<Arranah\>\"",
+      ",", "\"\<ar\[Hyphen]Rihiyah\>\"", ",", "\"\<ArTas\>\"", ",", 
+     "\"\<Arurah\>\"", ",", "\"\<Asirah al\[Hyphen]Qibliyah\>\"", ",", 
+     "\"\<Asirah as\[Hyphen]Samaliyah\>\"", ",", "\"\<Askar\>\"", ",", 
+     "\"\<as\[Hyphen]Samu\>\"", ",", "\"\<as\[Hyphen]Sawiyah\>\"", ",", 
+     "\"\<as\[Hyphen]Suyuh\>\"", ",", "\"\<ATarah\>\"", ",", 
+     "\"\<aT\[Hyphen]Taybah\>\"", ",", "\"\<aT\[Hyphen]Taybah\>\"", ",", 
+     "\"\<Attil\>\"", ",", "\"\<Awarta\>\"", ",", "\"\<Aydah\>\"", ",", 
+     "\"\<Aynabus\>\"", ",", "\"\<Ayn Yabrud\>\"", ",", "\"\<AzmuT\>\"", ",", 
+     "\"\<az\[Hyphen]Zababidah\>\"", ",", "\"\<az\[Hyphen]Zahiriyah\>\"", 
+     ",", "\"\<az\[Hyphen]Zawiyah\>\"", ",", "\"\<Azzun\>\"", ",", 
+     "\"\<Balata al\[Hyphen]Balad\>\"", ",", "\"\<BalaTah\>\"", ",", 
+     "\"\<Bala\>\"", ",", "\"\<Bani Naim\>\"", ",", 
+     "\"\<Baqah as\[Hyphen]Sarqiyah\>\"", ",", 
+     "\"\<BarTaah as\[Hyphen]Sarqiyah\>\"", ",", "\"\<Battir\>\"", ",", 
+     "\"\<Bayta\>\"", ",", "\"\<Bayt Awwa\>\"", ",", "\"\<Bayt Dajan\>\"", 
+     ",", "\"\<Bayt Fajjar\>\"", ",", "\"\<Bayt Furik\>\"", ",", 
+     "\"\<Bayt Iba\>\"", ",", "\"\<Baytillu\>\"", ",", "\"\<Bayt Imrin\>\"", 
+     ",", "\"\<Bayt Jala\>\"", ",", "\"\<Bayt Kahil\>\"", ",", 
+     "\"\<Bayt Lahm\>\"", ",", "\"\<Bayt Lid\>\"", ",", "\"\<Bayt Liqya\>\"", 
+     ",", "\"\<Bayt Sahur\>\"", ",", "\"\<Bayt Sira\>\"", ",", 
+     "\"\<Bayt Surik\>\"", ",", "\"\<Bayt Ula\>\"", ",", "\"\<Bayt Ummar\>\"",
+      ",", "\"\<Baytuniya\>\"", ",", "\"\<Bayt Ur at\[Hyphen]Tahta\>\"", ",", 
+     "\"\<Betar Illit\>\"", ",", "\"\<Bet Arye\>\"", ",", "\"\<Bet El\>\"", 
+     ",", "\"\<Biddu\>\"", ",", "\"\<Biddya\>\"", ",", "\"\<Bir Nabala\>\"", 
+     ",", "\"\<Birqin\>\"", ",", "\"\<Bir Zayt\>\"", ",", "\"\<Bitin\>\"", 
+     ",", "\"\<Bizzariya\>\"", ",", "\"\<Bruqin\>\"", ",", "\"\<Burin\>\"", 
+     ",", "\"\<Burqah\>\"", ",", "\"\<Burqah\>\"", ",", 
+     "\"\<Dayr Abu Daif\>\"", ",", "\"\<Dayr Abu Masal\>\"", ",", 
+     "\"\<Dayr al\[Hyphen]Gusun\>\"", ",", "\"\<Dayr al\[Hyphen]HaTab\>\"", 
+     ",", "\"\<Dayr Ammar\>\"", ",", "\"\<Dayr as\[Hyphen]Saraf\>\"", ",", 
+     "\"\<Dayr as\[Hyphen]Sudan\>\"", ",", "\"\<Dayr BalluT\>\"", ",", 
+     "\"\<Dayr Dibwan\>\"", ",", "\"\<Dayr Istiya\>\"", ",", 
+     "\"\<Dayr Jarir\>\"", ",", "\"\<Dayr Samit\>\"", ",", 
+     "\"\<Dhinnabah\>\"", ",", "\"\<Duma\>\"", ",", 
+     "\"\<Dura al\[Hyphen]Qar\>\"", ",", "\"\<Dura\>\"", ",", 
+     "\"\<Efrata\>\"", ",", "\"\<Ein Qiniyye\>\"", ",", "\"\<Eli\>\"", ",", 
+     "\"\<Elqana\>\"", ",", "\"\<Fahmah\>\"", ",", "\"\<Faqquah\>\"", ",", 
+     "\"\<Farun\>\"", ",", "\"\<Geva Binyamin\>\"", ",", "\"\<Givat Zeev\>\"",
+      ",", "\"\<Hablah\>\"", ",", "\"\<Hajjah\>\"", ",", "\"\<Halhul\>\"", 
+     ",", "\"\<Har Adar\>\"", ",", "\"\<Haras\>\"", ",", 
+     "\"\<Harbata al\[Hyphen]Misbah\>\"", ",", "\"\<Haris\>\"", ",", 
+     "\"\<Hashmonaim\>\"", ",", "\"\<Hebron\>\"", ",", 
+     "\"\<Hirbat Abu Falah\>\"", ",", "\"\<Hizma\>\"", ",", "\"\<Kharsa\>\"", 
+     ",", "\"\<Husan\>\"", ",", "\"\<Huwwara\>\"", ",", "\"\<Idhna\>\"", ",", 
+     "\"\<Iktaba\>\"", ",", "\"\<Illar\>\"", ",", "\"\<Immanuel\>\"", ",", 
+     "\"\<Immatin\>\"", ",", "\"\<Jaba\>\"", ",", "\"\<Jaba\>\"", ",", 
+     "\"\<Jalbun\>\"", ",", "\"\<Jammain\>\"", ",", "\"\<Janin\>\"", ",", 
+     "\"\<Jayyus\>\"", ",", "\"\<JinsafuT\>\"", ",", "\"\<Jit\>\"", ",", 
+     "\"\<Kafr ad\[Hyphen]Dik\>\"", ",", "\"\<Kafr al\[Hyphen]Labad\>\"", 
+     ",", "\"\<Kafr Aqab\>\"", ",", "\"\<Kafr Dan\>\"", ",", 
+     "\"\<Kafr Jammal\>\"", ",", "\"\<Kafr Malik\>\"", ",", 
+     "\"\<Kafr Nimah\>\"", ",", "\"\<Kafr Qaddum\>\"", ",", 
+     "\"\<Kafr Qallil\>\"", ",", "\"\<Kafr Rai\>\"", ",", "\"\<Kafr Tult\>\"",
+      ",", "\"\<Kawbar\>\"", ",", "\"\<Kefar Adummim\>\"", ",", 
+     "\"\<Kifl Haris\>\"", ",", "\"\<Kokhav Yaaqov\>\"", ",", 
+     "\"\<Kufayrit\>\"", ",", "\"\<Lappid\>\"", ",", "\"\<Maale Adummim\>\"", 
+     ",", "\"\<Majdal Bani Fadil\>\"", ",", "\"\<Mardah\>\"", ",", 
+     "\"\<Maytalun\>\"", ",", "\"\<Mazari an\[Hyphen]Nubari\>\"", ",", 
+     "\"\<Misliyah\>\"", ",", "\"\<Modiin Illit\>\"", ",", 
+     "\"\<Modiin\[Hyphen]Makkabim\[Hyphen]Reut\>\"", ",", 
+     "\"\<Muhayyam Dayr Ammar\>\"", ",", "\"\<Muhayyam Janin\>\"", ",", 
+     "\"\<Muhayyam Qalandiya\>\"", ",", "\"\<Muhayyam Tulkarm\>\"", ",", 
+     "\"\<Nablus\>\"", ",", "\"\<Nahhalin\>\"", ",", "\"\<Nazlat Isa\>\"", 
+     ",", "\"\<Nilin\>\"", ",", "\"\<Nuba\>\"", ",", "\"\<Nur Sams\>\"", ",", 
+     "\"\<Ofra\>\"", ",", "\"\<Qabalan\>\"", ",", "\"\<QabaTiyah\>\"", ",", 
+     "\"\<Qaffin\>\"", ",", "\"\<Qalqilyah\>\"", ",", 
+     "\"\<Qarawat Bani Hassan\>\"", ",", "\"\<Qarawat Bani Zayd\>\"", ",", 
+     "\"\<Qarne Shomeron\>\"", ",", "\"\<Qaryut\>\"", ",", "\"\<QaTannah\>\"",
+      ",", "\"\<Qedummim\>\"", ",", "\"\<Qibya\>\"", ",", 
+     "\"\<Qiryat Arba\>\"", ",", "\"\<Qusrah\>\"", ",", "\"\<Raba\>\"", ",", 
+     "\"\<Rafat\>\"", ",", "\"\<Rafat\>\"", ",", "\"\<Ram Allah\>\"", ",", 
+     "\"\<Ramin\>\"", ",", "\"\<Rammun\>\"", ",", "\"\<Rantis\>\"", ",", 
+     "\"\<Rujayb\>\"", ",", "\"\<Rummanah\>\"", ",", "\"\<SabasTiyah\>\"", 
+     ",", "\"\<Saffa\>\"", ",", "\"\<Sair\>\"", ",", "\"\<Salfit\>\"", ",", 
+     "\"\<Salim\>\"", ",", "\"\<Sanniriya\>\"", ",", "\"\<Sanur\>\"", ",", 
+     "\"\<Sarrah\>\"", ",", "\"\<SarTah\>\"", ",", "\"\<Sayda\>\"", ",", 
+     "\"\<Shaare Tiqwa\>\"", ",", "\"\<Shilo\>\"", ",", 
+     "\"\<Silat al\[Hyphen]Haritiyah\>\"", ",", 
+     "\"\<Silat az\[Hyphen]Zahr\>\"", ",", "\"\<Silwad\>\"", ",", 
+     "\"\<Sinjil\>\"", ",", "\"\<Siris\>\"", ",", "\"\<Suqba\>\"", ",", 
+     "\"\<Surif\>\"", ",", "\"\<Taffuh\>\"", ",", "\"\<Talfit\>\"", ",", 
+     "\"\<Tall as\[Hyphen]SulTan\>\"", ",", "\"\<Tall\>\"", ",", 
+     "\"\<Talluzah\>\"", ",", "\"\<Talmon\>\"", ",", "\"\<Tammun\>\"", ",", 
+     "\"\<Tarqumiya\>\"", ",", "\"\<Tayasir\>\"", ",", "\"\<Tubas\>\"", ",", 
+     "\"\<Tulkarm\>\"", ",", "\"\<Tuqu\>\"", ",", "\"\<Turmusayya\>\"", ",", 
+     "\"\<Urif\>\"", ",", "\"\<Yabad\>\"", ",", "\"\<Yasid\>\"", ",", 
+     "\"\<Yatma\>\"", ",", "\"\<YaTTa\>\"", ",", "\"\<Zatarah\>\"", ",", 
+     "\"\<Zayta\>\""}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.792870498324189*^9, 3.79287050677682*^9}, {
+   3.792870691543906*^9, 3.792870699196989*^9}, 3.792872412229842*^9},
+ CellLabel->
+  "In[554]:=",ExpressionUUID->"8806524a-6a52-47e8-aee1-a26a3a1fa02b"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Comparison", "Subsubsection",
+ CellChangeTimes->{{3.7928707253270483`*^9, 
+  3.79287072653893*^9}},ExpressionUUID->"eacf1840-8d7b-4f39-bc8a-\
+6db7df170323"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"StringJoin", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "<>", "\"\<\\n\>\""}], "&"}], "/@", 
+    RowBox[{"Complement", "[", 
+     RowBox[{
+      RowBox[{"Join", "[", 
+       RowBox[{"WolframNamesIsraeliCities", ",", "WolframWestBankCities"}], 
+       "]"}], ",", 
+      RowBox[{"Intersection", "[", 
+       RowBox[{
+        RowBox[{"Values", "[", "IsraelMunicipalitiesHebToEng", "]"}], ",", 
+        RowBox[{"Join", "[", 
+         RowBox[{"WolframNamesIsraeliCities", ",", "WolframWestBankCities"}], 
+         "]"}]}], "]"}]}], "]"}]}], "]"}], "//", "Print"}]], "Input",
+ CellChangeTimes->{{3.792870798116054*^9, 3.792870807082035*^9}, {
+  3.792870855370659*^9, 3.7928708621877737`*^9}, {3.7928718056524343`*^9, 
+  3.792871849747698*^9}, {3.7928719182820807`*^9, 3.792871919594154*^9}},
+ CellLabel->
+  "In[556]:=",ExpressionUUID->"150630fa-ab08-4a8f-87eb-bebbf9ed9477"],
+
+Cell[BoxData["\<\"Abud\\nAbu \
+Dis\\nAbwein\\nad\[Hyphen]Duhaysah\\nAjjah\\nAllon Shevut\\nAl-Zaitounah\\nal\
+\[Hyphen]Amarri\\nal\[Hyphen]Araqah\\nal\[Hyphen]Arrub\\nal\[Hyphen]Awja\\nal\
+\[Hyphen]Ayzariyah\\nal\[Hyphen]Birah\\nal\[Hyphen]Burj\\nal\[Hyphen]\
+Fandaqumiyah\\nal\[Hyphen]Farah\\nal\[Hyphen]Fawwar\\nal\[Hyphen]Hadr\\nal\
+\[Hyphen]Jalamah\\nal\[Hyphen]Jalazun\\nal\[Hyphen]Jib\\nal\[Hyphen]Jiftlik\\\
+nal\[Hyphen]Judaydah\\nal\[Hyphen]Judayrah\\nal\[Hyphen]Karmil\\nal\[Hyphen]\
+Lubban as\[Hyphen]Sarqiyah\\nal\[Hyphen]Mazraah as\[Hyphen]Sarqiyah\\nal\
+\[Hyphen]Mugayyir\\nal\[Hyphen]Qubaybah\\nal\[Hyphen]Ubaydiyah\\nal\[Hyphen]\
+Yamun\\nAnabta\\nAnata\\nAnin\\nAnzah\\nAqbah \
+Jabbar\\nAqqaba\\nAqraba\\nArara\[Hyphen]BaNegev\\nArrabah\\nArranah\\nArTas\\\
+nArurah\\nar\[Hyphen]Ram\\nar\[Hyphen]Rihiyah\\nAsirah \
+al\[Hyphen]Qibliyah\\nAsirah \
+as\[Hyphen]Samaliyah\\nAskar\\nas\[Hyphen]Samu\\nas\[Hyphen]Sawiyah\\nas\
+\[Hyphen]Suyuh\\nATarah\\nAttil\\naT\[Hyphen]Taybah\\nAwarta\\nAynabus\\nAyn \
+Yabrud\\nAzmuT\\nAzzun\\naz\[Hyphen]Zababidah\\naz\[Hyphen]Zahiriyah\\naz\
+\[Hyphen]Zawiyah\\nBala\\nBalata al\[Hyphen]Balad\\nBalaTah\\nBani \
+Naim\\nBaqah as\[Hyphen]Sarqiyah\\nBaqa\[Hyphen]Jatt\\nBarTaah \
+as\[Hyphen]Sarqiyah\\nBattir\\nBayta\\nBayt Awwa\\nBayt Dajan\\nBayt \
+Fajjar\\nBayt Furik\\nBayt Iba\\nBaytillu\\nBayt Imrin\\nBayt Kahil\\nBayt \
+Lid\\nBayt Liqya\\nBayt Sahur\\nBayt Sira\\nBayt Surik\\nBayt Ula\\nBayt \
+Ummar\\nBaytuniya\\nBayt Ur at\[Hyphen]Tahta\\nBiddu\\nBiddya\\nBinyamina\
+\[Hyphen]Givat Ada\\nBir El\[Hyphen]Maksur\\nBir Nabala\\nBirqin\\nBir \
+Zayt\\nBitin\\nBizzariya\\nBruqin\\nBueine\[Hyphen]Nujeidat\\nBurin\\nBurqah\\\
+nDaliyat Al Karmel\[Hyphen]Isifya\\nDayr Abu Daif\\nDayr Abu Masal\\nDayr al\
+\[Hyphen]Gusun\\nDayr al\[Hyphen]HaTab\\nDayr Ammar\\nDayr \
+as\[Hyphen]Saraf\\nDayr as\[Hyphen]Sudan\\nDayr BalluT\\nDayr Dibwan\\nDayr \
+Istiya\\nDayr Jarir\\nDayr Samit\\nDhinnabah\\nDuma\\nDura\\nDura \
+al\[Hyphen]Qar\\nEin \
+Qiniyye\\nFahmah\\nFaqquah\\nFarun\\nHablah\\nHajjah\\nHalhul\\nHaras\\\
+nHarbata al\[Hyphen]Misbah\\nHaris\\nHirbat Abu \
+Falah\\nHizma\\nHusan\\nHuwwara\\nIdhna\\nIktaba\\nIllar\\nImmatin\\nJaba\\\
+nJalbun\\nJammain\\nJayyus\\nJinsafuT\\nJisr Az\[Hyphen]Zarqa\\nJit\\nJudeide\
+\[Hyphen]Maker\\nKaabiyye\[Hyphen]Tabbash\[Hyphen]Hajaj\\nKafr ad\[Hyphen]Dik\
+\\nKafr al\[Hyphen]Labad\\nKafr Aqab\\nKafr Dan\\nKafr Jammal\\nKafr \
+Malik\\nKafr Nimah\\nKafr Qaddum\\nKafr Qallil\\nKafr Rai\\nKafr \
+Tult\\nKaokab Abu Al\[Hyphen]Hija\\nKawbar\\nKharsa\\nKifl Haris\\nKisra\
+\[Hyphen]Sumei\\nKokhav Yaaqov\\nKufayrit\\nMaale \
+Adummim\\nMaalot\[Hyphen]Tarshiha\\nMajdal Bani \
+Fadil\\nMardah\\nMaytalun\\nMazari an\[Hyphen]Nubari\\nMisliyah\\nModiin\
+\[Hyphen]Makkabim\[Hyphen]Reut\\nMuhayyam Dayr Ammar\\nMuhayyam \
+Janin\\nMuhayyam Qalandiya\\nMuhayyam Tulkarm\\nNahhalin\\nNazlat Isa\\nNilin\
+\\nNuba\\nNur Sams\\nPardes \
+Hanna\[Hyphen]Karkur\\nQabalan\\nQabaTiyah\\nQaffin\\nQalqilyah\\nQarawat \
+Bani Hassan\\nQarawat Bani \
+Zayd\\nQaryut\\nQazir\[Hyphen]Harish\\nQibya\\nQusrah\\nRaba\\nRafat\\nRamin\\\
+nRammun\\nRantis\\nRujayb\\nRummanah\\nSabasTiyah\\nSaffa\\nSair\\nSalfit\\\
+nSalim\\nSanniriya\\nSanur\\nSarrah\\nSarTah\\nSayda\\nSegev\[Hyphen]Shalom\\\
+nShaare Tiqwa\\nShibli\[Hyphen]Umm Al\[Hyphen]Ghanam\\nSilat \
+al\[Hyphen]Haritiyah\\nSilat \
+az\[Hyphen]Zahr\\nSilwad\\nSinjil\\nSiris\\nSuqba\\nSurif\\nTaffuh\\nTalfit\\\
+nTall\\nTall \
+as\[Hyphen]SulTan\\nTalluzah\\nTammun\\nTarqumiya\\nTayasir\\nTubas\\nTuba\
+\[Hyphen]Zangariyye\\nTulkarm\\nTuqu\\nTurmusayya\\nUmm \
+Al\[Hyphen]Fahm\\nUrif\\nYabad\\nYasid\\nYatma\\nYaTTa\\nYehud\\nYehud\
+\[Hyphen]Newe Efrayim\\nZatarah\\nZayta\\nZikhron \
+Ya'akov\\nZoran\[Hyphen]Qadima\\n\"\>"], "Print",
+ CellChangeTimes->{3.7928762676357937`*^9, 3.792876385068048*^9, 
+  3.792876489915399*^9, 3.7928768165588818`*^9, 3.792876881097517*^9},
+ CellLabel->
+  "During evaluation of \
+In[556]:=",ExpressionUUID->"1db4f882-d52d-4812-86aa-5087986db7ae"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"IsraelMunicipalitiesHebToEng", "[", 
+  "\"\<\:05e8\:05d0\:05e9\:05dc\\\"\:05e6\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7928765638588753`*^9, 3.792876635173295*^9}, 
+   3.7928767444428873`*^9, {3.792876823733327*^9, 3.792876844087284*^9}},
+ CellLabel->
+  "In[557]:=",ExpressionUUID->"31a69259-2858-4bf6-94be-b1457de2d8f2"],
+
+Cell[BoxData["\<\"Rishon LeZiyyon\"\>"], "Output",
+ CellChangeTimes->{
+  3.7928766017181187`*^9, 3.79287663612149*^9, 3.792876745501897*^9, {
+   3.7928768165758467`*^9, 3.792876844775304*^9}, {3.792876879908248*^9, 
+   3.7928768811180887`*^9}},
+ CellLabel->
+  "Out[557]=",ExpressionUUID->"cf8000cd-aecf-40b0-9f11-c7c1b969720a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StringContainsQ", "[", 
+  RowBox[{
+  "\"\<\:05e8\:05d0\:05e9\:05dc\\\"\:05e6\>\"", ",", "AmbiguousCharacters1"}],
+   "]"}]], "Input",
+ CellChangeTimes->{{3.7928772123589907`*^9, 3.792877217194628*^9}},
+ CellLabel->
+  "In[569]:=",ExpressionUUID->"e5cb5e88-f59e-402d-921c-9bdf6441a37c"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{{3.7928772126990356`*^9, 3.792877217580117*^9}},
+ CellLabel->
+  "Out[569]=",ExpressionUUID->"4314adba-4d0c-427f-8419-7b7c8e9d9841"]
+}, Open  ]]
+}, Closed]]
+},
+WindowSize->{1002, 695},
+WindowMargins->{{Automatic, 93}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 450, 11, 52, "Input",ExpressionUUID->"f219ddb7-85e9-4f45-b587-a8f9fb894c64"],
+Cell[1033, 35, 628, 10, 34, "Output",ExpressionUUID->"3c711bac-9597-4fc7-a1d9-6d6a35b57081"]
+}, Open  ]],
+Cell[1676, 48, 675, 17, 73, "Input",ExpressionUUID->"9a99dfb1-680f-48a9-9f14-ba3411f8046e"],
+Cell[2354, 67, 1252, 31, 94, "Input",ExpressionUUID->"08c9c4f6-5aff-4415-bd16-0c4224839d9e"],
+Cell[3609, 100, 2039, 57, 94, "Input",ExpressionUUID->"085fec44-2cf0-4464-aeb7-9c680c75dfd3"],
+Cell[5651, 159, 303, 7, 30, "Input",ExpressionUUID->"665da2ee-1920-4d2d-9857-f1f4d00cb349"],
+Cell[CellGroupData[{
+Cell[5979, 170, 173, 3, 45, "Subsubsection",ExpressionUUID->"55934b83-9cb6-434f-a90b-a891e20919ec"],
+Cell[6155, 175, 14392, 211, 1354, "Input",ExpressionUUID->"8806524a-6a52-47e8-aee1-a26a3a1fa02b"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[20584, 391, 162, 3, 37, "Subsubsection",ExpressionUUID->"eacf1840-8d7b-4f39-bc8a-6db7df170323"],
+Cell[CellGroupData[{
+Cell[20771, 398, 910, 21, 73, "Input",ExpressionUUID->"150630fa-ab08-4a8f-87eb-bebbf9ed9477"],
+Cell[21684, 421, 3982, 61, 4642, "Print",ExpressionUUID->"1db4f882-d52d-4812-86aa-5087986db7ae"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25703, 487, 350, 6, 33, "Input",ExpressionUUID->"31a69259-2858-4bf6-94be-b1457de2d8f2"],
+Cell[26056, 495, 327, 6, 34, "Output",ExpressionUUID->"cf8000cd-aecf-40b0-9f11-c7c1b969720a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26420, 506, 308, 7, 33, "Input",ExpressionUUID->"e5cb5e88-f59e-402d-921c-9bdf6441a37c"],
+Cell[26731, 515, 182, 3, 68, "Output",ExpressionUUID->"4314adba-4d0c-427f-8419-7b7c8e9d9841"]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+
