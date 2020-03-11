@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a popup on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [35.1392, 32.6172],
+        zoom: 6
+    });
+    
+    map.on('load', function() {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Tenerife Tourist</strong><p>HaZafon, Israel</p>',
+                            'icon': 'marker'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3864, 32.8159]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>LY395 Tel Aviv- Madrid</strong><p>Wed 19 Feb 2020 06:15:00-Wed 19 Feb 2020 06:15:00</p><p>Ben Gurion Airport - </p><p>Ben Gurion International Airport - </p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8867, 32.0114]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>3926i Madrid- Tenerife</strong><p>Sat 22 Feb 2020 20:00:00-Sat 22 Feb 2020 20:00:00</p><p>Ben Gurion Airport - </p><p>Ben Gurion International Airport - </p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8867, 32.0114]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>i3939 Tenerife- Madrid</strong><p>Sun 1 Mar 2020 19:00:00-Sun 1 Mar 2020 19:00:00</p><p>Ben Gurion Airport - </p><p>Ben Gurion International Airport - </p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8867, 32.0114]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>LY396 Madrid- Tel Aviv</strong><p>Sun 1 Mar 2020 12:30:00-Sun 1 Mar 2020 12:30:00</p><p> - Ben Gurion Airport</p><p> - Ben Gurion International Airport</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8867, 32.0114]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>King store</strong><p>Mon 2 Mar 2020 10:00:00-Mon 2 Mar 2020 12:00:00</p><p>HaYotzrim 15 - HaYotzrim 15</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3127, 32.9254]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Vivino Italian Restaurant</strong><p>Mon 2 Mar 2020 13:45:00-Mon 2 Mar 2020 16:00:00</p><p>HaKharoshet 15 - HaKharoshet 15</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.3073, 32.9215]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Misgav town club treatment room</strong><p>Tue 3 Mar 2020 11:30:00-Tue 3 Mar 2020 12:00:00</p><p>Town club - Town club</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2598, 32.8602]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Pizza Matyelet in Rakefet</strong><p>Tue 3 Mar 2020 14:30:00-Tue 3 Mar 2020 14:45:00</p><p>Pizza Matyelet - Pizza Matyelet</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2625, 32.8586]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong></strong><p>Tue 3 Mar 2020 20:00:00-Tue 3 Mar 2020 22:00:00</p><p>Moriah 107 - </p><p>Haifa - Haifa</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.9869, 32.7896]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Misgav town club sauna and jacuzzi</strong><p>Wed 4 Mar 2020 11:00:00-Wed 4 Mar 2020 13:30:00</p><p>Town club - Town club</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2598, 32.8602]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Misgav town club restaurant Tevel</strong><p>Wed 4 Mar 2020 13:30:00-Wed 4 Mar 2020 14:20:00</p><p>Town club - Town club</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2598, 32.8602]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Misgav town club pool</strong><p>Wed 4 Mar 2020 14:45:00-Wed 4 Mar 2020 15:15:00</p><p>Town club - Town club</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2598, 32.8602]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>McDonald on walking-only street</strong><p>Wed 4 Mar 2020 15:30:00-Wed 4 Mar 2020 16:00:00</p><p>Sderot Nesiei Israel 100A - Sderot Nesiei Israel 100A</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2934, 32.9085]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>US embassy</strong><p>-</p><p>HaYarkon 71 - HaYarkon 71</p><p>Tel Aviv - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.7667, 32.0767]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Pri veYereq shop</strong><p>Thu 5 Mar 2020 10:30:00-Thu 5 Mar 2020 12:30:00</p><p>Saedi St - Saedi St</p><p>Tamra - Tamra</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2013, 32.8522]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Pizza Matyelet in Rakefet</strong><p>Thu 5 Mar 2020 13:30:00-Thu 5 Mar 2020 14:00:00</p><p>Pizza Matyelet - Pizza Matyelet</p><p>Karmiel - Karmiel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.2625, 32.8586]
+                        }
+                    }
+                ]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}-15',
+                'icon-allow-overlap': true,
+                'icon-size': 5
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'places', function(e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', function() {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', function() {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+</script>
+
+</body>
+</html>
