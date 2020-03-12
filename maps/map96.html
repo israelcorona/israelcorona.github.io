@@ -1,1 +1,348 @@
-StringJoin[StringDrop[StringJoin["<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\" />\n<title>Display a popup on click</title>\n<meta name=\"viewport\" content=\"initial-scale=1,maximum-scale=1,user-scalable=no\" />\n<script src=\"https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js\"></script>\n<link href=\"https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css\" rel=\"stylesheet\" />\n<style>\n\tbody { margin: 0; padding: 0; }\n\t#map { position: absolute; top: 0; bottom: 0; width: 100%; }\n</style>\n</head>\n<body>\n<style>\n    .mapboxgl-popup {\n        max-width: 400px;\n        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;\n    }\n</style>\n<div id=\"map\"></div>\n<script>\n\tmapboxgl.accessToken = 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw';\n    var map = new mapboxgl.Map({\n        container: 'map',\n        style: 'mapbox://styles/mapbox/streets-v11',\n        center: [34.8289, 31.9458],\n        zoom: 6\n    });\n    \n    map.on('load', function() {\n        map.addSource('places', {\n            'type': 'geojson',\n            'data': {\n                'type': 'FeatureCollection',\n                'features': [\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Contact of a Patient</strong><p>HaMerkaz, Israel</p>',\n                            'icon': 'marker'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8826, 32.0667]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Bus Ride 166</strong><p>Sun 1 Mar 2020 06:20:00-Sun 1 Mar 2020 06:20:00</p><p>HaKibbutzim Bus Stop - Tachanat Harishona Sheba Hospital</p><p>Rehovot - Tel Aviv</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8169, 31.8836]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Bus Ride 166</strong><p>Sun 1 Mar 2020 06:20:00-Sun 1 Mar 2020 06:20:00</p><p>HaKibbutzim Bus Stop - Tachanat Harishona Sheba Hospital</p><p>Rehovot - Tel Aviv</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8428, 32.0466]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Sheba Tel HaShomer Endocrinology clinic and diabetes</strong><p>Sun 1 Mar 2020 08:00:00-Sun 1 Mar 2020 08:20:00</p><p>Sheba Medical Center - Sheba Medical Center</p><p>Tel Aviv - Tel Aviv</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8428, 32.0466]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong> Bus 87</strong><p>Sun 1 Mar 2020 08:40:00-Sun 1 Mar 2020 09:15:00</p><p>Sheba Medical Center - </p><p>Tel Aviv - Petah Tiqwa</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8428, 32.0466]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong> Bus 87</strong><p>Sun 1 Mar 2020 08:40:00-Sun 1 Mar 2020 09:15:00</p><p>Sheba Medical Center - </p><p>Tel Aviv - Petah Tiqwa</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8851, 32.0979]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Dreamy Restaurant</strong><p>Sun 1 Mar 2020 12:00:00-Sun 1 Mar 2020 14:00:00</p><p>HaSivim 49 - HaSivim 49</p><p>Givat Shemuel - Givat Shemuel</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8564, 32.0839]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>", 164., "</strong><p>Sun 1 Mar 2020 14:15:00-Sun 1 Mar 2020 14:15:00</p><p>Geha Interchange - HaKibbutzim Bus Stop</p><p> - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8459, 32.0923]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>", 164., "</strong><p>Sun 1 Mar 2020 14:15:00-Sun 1 Mar 2020 14:15:00</p><p>Geha Interchange - HaKibbutzim Bus Stop</p><p> - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8169, 31.8836]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Polling station 844 at Chabad School</strong><p>Mon 2 Mar 2020 10:15:00-Mon 2 Mar 2020 10:40:00</p><p>Steinberg 10 - Steinberg 10</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8217, 31.8916]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Pealton</strong><p>Mon 2 Mar 2020 14:00:00-Mon 2 Mar 2020 16:00:00</p><p>Bilu 2 - Bilu 2</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8074, 31.8932]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Pizza Smiley</strong><p>Mon 2 Mar 2020 16:20:00-Mon 2 Mar 2020 17:15:00</p><p>Yerusalayim 2 - Yerushalayim 2</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8201, 31.8875]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>The Great Purim Fair, School For Girls Ahli Chaya Mushka</strong><p>Wed 4 Mar 2020 16:00:00-Wed 4 Mar 2020 18:00:00</p><p>28 HaRav Zekharya Madar - 28 HaRav Zekharya Madar</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.819, 31.8901]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Menachem Synagogue Chabad young people</strong><p>Sat 7 Mar 2020 11:00:00-Sat 7 Mar 2020 12:00:00</p><p>28 HaRav Zekharya Madar - 28 HaRav Zekharya Madar</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.819, 31.8901]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Menachem Synagogue Chabad young people</strong><p>Sat 7 Mar 2020 11:00:00-Sat 7 Mar 2020 12:00:00</p><p>28 HaRav Zekharya Madar - 28 HaRav Zekharya Madar</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8202, 31.889]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Playground</strong><p>Sat 7 Mar 2020 12:30:00-Sat 7 Mar 2020 13:30:00</p><p>Kovshei ha-Khermon St 2, Rehovot, Israel - Kovshei ha-Khermon St 2, Rehovot, Israel</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8174, 31.8881]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>", 15., "</strong><p>Sat 7 Mar 2020 19:00:00-Sat 7 Mar 2020 19:00:00</p><p>HaKibbutzim Bus Stop - Bilu 2</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8169, 31.8836]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Carolina Lemke</strong><p>Sat 7 Mar 2020 19:10:00-Sat 7 Mar 2020 19:20:00</p><p>Bilu 2 - Bilu 2</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8074, 31.8932]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Turqoise</strong><p>Sat 7 Mar 2020 19:25:00-Sat 7 Mar 2020 20:00:00</p><p>Bilu 2 - Bilu 2</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8074, 31.8932]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>", 15., "</strong><p>Sat 7 Mar 2020 20:20:00-Sat 7 Mar 2020 20:20:00</p><p>Bilu 2 - HaKibbutzim Bus Stop</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8074, 31.8932]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>", 15., "</strong><p>Sat 7 Mar 2020 20:20:00-Sat 7 Mar 2020 20:20:00</p><p>Bilu 2 - HaKibbutzim Bus Stop</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8169, 31.8836]\n                        }\n                    },\n{\n                        'type': 'Feature',\n                        'properties': {\n                            'description':\n                                '<strong>Bar Kol Oshiyot</strong><p>Mon 9 Mar 2020 10:15:00-Mon 9 Mar 2020 10:50:00</p><p>Mivtsa Litani St 8 - Mivtsa Litani St 8</p><p>Rehovot - Rehovot</p>',\n                            'icon': 'information'\n                        },\n                        'geometry': {\n                            'type': 'Point',\n                            'coordinates': [34.8229, 31.8833]\n                        }\n                    },\n"], -2], "\n                ]\n            }\n        });\n        // Add a layer showing the places.\n        map.addLayer({\n            'id': 'places',\n            'type': 'symbol',\n            'source': 'places',\n            'layout': {\n                'icon-image': '{icon}-15',\n                'icon-allow-overlap': true,\n                'icon-size': 5\n            }\n        });\n\n        // When a click event occurs on a feature in the places layer, open a popup at the\n        // location of the feature, with description HTML from its properties.\n        map.on('click', 'places', function(e) {\n            var coordinates = e.features[0].geometry.coordinates.slice();\n            var description = e.features[0].properties.description;\n\n            // Ensure that if the map is zoomed out such that multiple\n            // copies of the feature are visible, the popup appears\n            // over the copy being pointed to.\n            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {\n                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;\n            }\n\n            new mapboxgl.Popup()\n                .setLngLat(coordinates)\n                .setHTML(description)\n                .addTo(map);\n        });\n\n        // Change the cursor to a pointer when the mouse is over the places layer.\n        map.on('mouseenter', 'places', function() {\n            map.getCanvas().style.cursor = 'pointer';\n        });\n\n        // Change it back to a pointer when it leaves.\n        map.on('mouseleave', 'places', function() {\n            map.getCanvas().style.cursor = '';\n        });\n    });\n</script>\n\n</body>\n</html>"]
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a popup on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [34.8289, 31.9458],
+        zoom: 6
+    });
+    
+    map.on('load', function() {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Contact of a Patient</strong><p>HaMerkaz, Israel</p>',
+                            'icon': 'marker'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8826, 32.0667]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus Ride 166</strong><p>Sun 1 Mar 2020 06:20:00-Sun 1 Mar 2020 06:20:00</p><p>HaKibbutzim Bus Stop - Tachanat Harishona Sheba Hospital</p><p>Rehovot - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8169, 31.8836]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus Ride 166</strong><p>Sun 1 Mar 2020 06:20:00-Sun 1 Mar 2020 06:20:00</p><p>HaKibbutzim Bus Stop - Tachanat Harishona Sheba Hospital</p><p>Rehovot - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8428, 32.0466]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Sheba Tel HaShomer Endocrinology clinic and diabetes</strong><p>Sun 1 Mar 2020 08:00:00-Sun 1 Mar 2020 08:20:00</p><p>Sheba Medical Center - Sheba Medical Center</p><p>Tel Aviv - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8428, 32.0466]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong> Bus 87</strong><p>Sun 1 Mar 2020 08:40:00-Sun 1 Mar 2020 09:15:00</p><p>Sheba Medical Center - </p><p>Tel Aviv - Petah Tiqwa</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8428, 32.0466]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong> Bus 87</strong><p>Sun 1 Mar 2020 08:40:00-Sun 1 Mar 2020 09:15:00</p><p>Sheba Medical Center - </p><p>Tel Aviv - Petah Tiqwa</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8851, 32.0979]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Dreamy Restaurant</strong><p>Sun 1 Mar 2020 12:00:00-Sun 1 Mar 2020 14:00:00</p><p>HaSivim 49 - HaSivim 49</p><p>Givat Shemuel - Givat Shemuel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8564, 32.0839]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus 164</strong><p>Sun 1 Mar 2020 14:15:00-Sun 1 Mar 2020 14:15:00</p><p>Geha Interchange - HaKibbutzim Bus Stop</p><p> - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8459, 32.0923]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus 164</strong><p>Sun 1 Mar 2020 14:15:00-Sun 1 Mar 2020 14:15:00</p><p>Geha Interchange - HaKibbutzim Bus Stop</p><p> - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8169, 31.8836]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Polling station 844 at Chabad School</strong><p>Mon 2 Mar 2020 10:15:00-Mon 2 Mar 2020 10:40:00</p><p>Steinberg 10 - Steinberg 10</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8217, 31.8916]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Pealton</strong><p>Mon 2 Mar 2020 14:00:00-Mon 2 Mar 2020 16:00:00</p><p>Bilu 2 - Bilu 2</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8074, 31.8932]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Pizza Smiley</strong><p>Mon 2 Mar 2020 16:20:00-Mon 2 Mar 2020 17:15:00</p><p>Yerusalayim 2 - Yerushalayim 2</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8201, 31.8875]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>The Great Purim Fair, School For Girls Ahli Chaya Mushka</strong><p>Wed 4 Mar 2020 16:00:00-Wed 4 Mar 2020 18:00:00</p><p>28 HaRav Zekharya Madar - 28 HaRav Zekharya Madar</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.819, 31.8901]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Menachem Synagogue Chabad young people</strong><p>Sat 7 Mar 2020 11:00:00-Sat 7 Mar 2020 12:00:00</p><p>28 HaRav Zekharya Madar - 28 HaRav Zekharya Madar</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.819, 31.8901]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Menachem Synagogue Chabad young people</strong><p>Sat 7 Mar 2020 11:00:00-Sat 7 Mar 2020 12:00:00</p><p>28 HaRav Zekharya Madar - 28 HaRav Zekharya Madar</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8202, 31.889]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Playground</strong><p>Sat 7 Mar 2020 12:30:00-Sat 7 Mar 2020 13:30:00</p><p>Kovshei ha-Khermon St 2, Rehovot, Israel - Kovshei ha-Khermon St 2, Rehovot, Israel</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8174, 31.8881]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus 15</strong><p>Sat 7 Mar 2020 19:00:00-Sat 7 Mar 2020 19:00:00</p><p>HaKibbutzim Bus Stop - Bilu 2</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8169, 31.8836]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Carolina Lemke</strong><p>Sat 7 Mar 2020 19:10:00-Sat 7 Mar 2020 19:20:00</p><p>Bilu 2 - Bilu 2</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8074, 31.8932]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Turqoise</strong><p>Sat 7 Mar 2020 19:25:00-Sat 7 Mar 2020 20:00:00</p><p>Bilu 2 - Bilu 2</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8074, 31.8932]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus 15</strong><p>Sat 7 Mar 2020 20:20:00-Sat 7 Mar 2020 20:20:00</p><p>Bilu 2 - HaKibbutzim Bus Stop</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8074, 31.8932]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bus 15</strong><p>Sat 7 Mar 2020 20:20:00-Sat 7 Mar 2020 20:20:00</p><p>Bilu 2 - HaKibbutzim Bus Stop</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8169, 31.8836]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bar Kol Oshiyot</strong><p>Mon 9 Mar 2020 10:15:00-Mon 9 Mar 2020 10:50:00</p><p>Mivtsa Litani St 8 - Mivtsa Litani St 8</p><p>Rehovot - Rehovot</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8229, 31.8833]
+                        }
+                    }
+                ]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}-15',
+                'icon-allow-overlap': true,
+                'icon-size': 5
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'places', function(e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', function() {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', function() {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+</script>
+
+</body>
+</html>
