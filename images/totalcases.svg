@@ -139,7 +139,7 @@
   <path d="M 374 133 L 394 133 L 394 136 L 374 136 Z M 374 133 "/>
 </clipPath>
 </defs>
-<g id="surface216">
+<g id="surface252">
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:1.6;stroke-linecap:square;stroke-linejoin:miter;stroke:rgb(36.84082%,50.67749%,70.979309%);stroke-opacity:1;stroke-miterlimit:3.25;" d="M 94.890625 225.082031 L 120.328125 225.082031 L 145.769531 218.40625 L 171.210938 213.957031 L 196.648438 213.957031 L 222.089844 207.28125 L 247.53125 202.832031 L 272.96875 193.933594 L 298.410156 185.035156 L 323.851562 176.132812 L 349.289062 129.414062 L 374.730469 84.917969 L 400.171875 58.21875 L 425.609375 42.644531 " transform="matrix(1,0,0,1,-74,-13)"/>
 </g>
