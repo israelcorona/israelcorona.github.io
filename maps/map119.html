@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a popup on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [34.8748, 32.0276],
+        zoom: 6
+    });
+    
+    map.on('load', function() {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Orot Student</strong><p>HaMerkaz, Israel</p>',
+                            'icon': 'marker'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8826, 32.0667]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Orot School</strong><p>Sun 1 Mar 2020 07:30:00-Sun 1 Mar 2020 07:30:00</p><p>Nitzan-Gabi Ashkenazi station  - Nitzan-Gabi Ashkenazi station </p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8728, 32.025]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Performing Arts Center</strong><p>Sun 1 Mar 2020 19:00:00-Sun 1 Mar 2020 21:00:00</p><p>Performing Arts Center - Performing Arts Center</p><p>Shoham - Shoham</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.9456, 31.9999]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Orot School</strong><p>Mon 2 Mar 2020 07:30:00-Mon 2 Mar 2020 07:30:00</p><p>Nitzan-Gabi Ashkenazi station  - HaBanim 10</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8644, 32.026]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Orot School</strong><p>Tue 3 Mar 2020 07:30:00-Tue 3 Mar 2020 07:30:00</p><p>Nitzan-Gabi Ashkenazi station  - HaBanim 10</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8644, 32.026]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Orot School</strong><p>Wed 4 Mar 2020 07:30:00-Wed 4 Mar 2020 07:30:00</p><p>Nitzan-Gabi Ashkenazi station  - HaBanim 10</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8644, 32.026]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Orot School</strong><p>Thu 5 Mar 2020 07:30:00-Thu 5 Mar 2020 07:30:00</p><p>Nitzan-Gabi Ashkenazi station  - HaBanim 10</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8644, 32.026]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Gan Tzivuni</strong><p>-</p><p>HaShikma 20 - HaShikma 20</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8625, 32.0306]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Gan Tzivuni</strong><p>Sun 8 Mar 2020 07:30:00-Sun 8 Mar 2020 07:30:00</p><p>Nitzan-Gabi Ashkenazi station  - HaBanim 10</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8644, 32.026]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Avner tent Synagogue</strong><p>Mon 9 Mar 2020 18:00:00-Mon 9 Mar 2020 19:30:00</p><p>Dganya 40 - Dganya 40</p><p>Or Yehuda - Or Yehuda</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8623, 32.0243]
+                        }
+                    }
+                ]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}-15',
+                'icon-allow-overlap': true,
+                'icon-size': 5
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'places', function(e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', function() {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', function() {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+</script>
+
+</body>
+</html>
