@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a popup on click</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+</style>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [35.1419, 32.6893],
+        zoom: 6
+    });
+    
+    map.on('load', function() {
+        map.addSource('places', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Train Ride</strong><p>14:03 08.03.2020-14:10 08.03.2020</p><p>TEL AVIV Hagana - Kefar Habad</p><p>Tel Aviv - Kefar Habad</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.783276, 32.055685]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Beit Menachem Synagogue Mikveh</strong><p>14:30 08.03.2020-15:00 08.03.2020</p><p>Beit Menachem Synagogue - Beit Menachem Synagogue</p><p>Kefar Habad - Kefar Habad</p><strong>Beit Menachem Synagogue</strong><p>15:00 08.03.2020-16:30 08.03.2020</p><p>Beit Menachem Synagogue - Beit Menachem Synagogue</p><p>Kefar Habad - Kefar Habad</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.849851, 31.991486]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Train Ride</strong><p>17:14 08.03.2020-17:35 08.03.2020</p><p>Kefar Habad - Tel Aviv University</p><p>Kefar Habad - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.852913, 31.993080]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Train Ride</strong><p>17:55 08.03.2020-19:06 08.03.2020</p><p>Tel Aviv University - Qiryat Motzkin</p><p>Tel Aviv - Qiryat Motzkin</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.804494, 32.103489]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Chabad Meeting</strong><p>19:30 08.03.2020-20:00 08.03.2020</p><p>Chabad - Chabad</p><p>Qiryat Shmuel - Qiryat Shmuel</p><strong>Chabad Meeting</strong><p>19:30 09.03.2020-20:00 09.03.2020</p><p>Chabad - Chabad</p><p>Qiryat Shmuel - Qiryat Shmuel</p><strong>Chabad Meeting</strong><p>19:30 10.03.2020-20:00 10.03.2020</p><p>Chabad - Chabad</p><p>Qiryat Shmuel - Qiryat Shmuel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.071444, 32.841927]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Chabad</strong><p>01:00 10.03.2020-20:00 10.03.2020</p><p>Chabad - Chabad</p><p>Tirat Carmel - Tirat Carmel</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.973670, 32.760476]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Chabad Yeshiva</strong><p>01:00 12.03.2020-22:00 12.03.2020</p><p>HaAri 5 - HaAri 5</p><p>Zefat - Zefat</p><strong>Chabad Yeshiva</strong><p>08:00 13.03.2020-23:00 13.03.2020</p><p>HaAri 5 - HaAri 5</p><p>Zefat - Zefat</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.494215, 32.971973]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Chabad Yeshiva Educate your child</strong><p>02:00 12.03.2020-22:00 12.03.2020</p><p>Lokhamei HaGetaot 1 - Lokhamei HaGetaot 1</p><p>Zefat - Zefat</p><strong>Chabad Yeshiva Educate your child</strong><p>02:00 14.03.2020-22:00 14.03.2020</p><p>Lokhamei HaGetaot 1 - Lokhamei HaGetaot 1</p><p>Zefat - Zefat</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.499180, 32.958457]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Train Ride</strong><p>13:35 08.03.2020-13:47 08.03.2020</p><p>Ben Gurion Airport - TEL AVIV Hagana</p><p>Lod - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.783276, 32.055685]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Train Ride</strong><p>17:14 08.03.2020-17:35 08.03.2020</p><p>Kefar Habad - Tel Aviv University</p><p>Kefar Habad - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.804494, 32.103489]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Train Ride</strong><p>17:55 08.03.2020-19:06 08.03.2020</p><p>Tel Aviv University - Qiryat Motzkin</p><p>Tel Aviv - Qiryat Motzkin</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [35.070128, 32.832985]
+                        }
+                    },
+{
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>El Al LY002</strong><p>12:45 08.03.2020- 08.03.2020</p><p>New York City - Tel Aviv</p>',
+                            'icon': 'information'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [34.8867, 32.0114]
+                        }
+                    }
+                ]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}-15',
+                'icon-allow-overlap': true,
+                'icon-size': 5
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'places', function(e) {
+            var coordinates = e.features[0].geometry.coordinates.slice();
+            var description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', function() {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', function() {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+</script>
+
+</body>
+</html>
