@@ -84,3 +84,106 @@ Plotly.newPlot('myDiv', data, layout, config);
 })
 
 
+Plotly.d3.csv('newerflights.csv', function(err, rows){
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });}
+
+    function getMaxOfArray(numArray) {
+        return Math.max.apply(null, numArray);
+    }
+
+    var data = [];
+    var startLongitude = unpack(rows, 'Starty');
+    var endLongitude = unpack(rows, 'Endy');
+    var startLat = unpack(rows, 'Startx');
+    var endLat = unpack(rows, 'Endx');
+
+    for ( var i = 0 ; i < startLongitude.length; i++ ) {
+        var opacityValue = 0.2;
+
+        var result = {
+            type: 'scattergeo',
+            lon: [ startLongitude[i] , endLongitude[i] ],
+            lat: [ startLat[i] , endLat[i] ],
+            mode: 'lines',
+            line: {
+                width: 2,
+                color: 'red'
+            },
+            opacity: opacityValue
+        };
+
+        data.push(result);
+    };
+
+    var layout = {
+        title: 'Importing Flights Announced After 20-Mar-2020',
+        showlegend: false,
+        geo:{
+            scope: 'north america + europe',
+            projection: {
+                type: 'azimuthal equal area'
+            },
+            showland: true,
+            landcolor: 'rgb(243,243,243)',
+            countrycolor: 'rgb(204,204,204)'
+        },
+        width: window.innerWidth,
+        height: 600
+    };
+
+    Plotly.newPlot("myGeo1", data, layout, {showLink: false});
+
+});
+
+Plotly.d3.csv('olderflights.csv', function(err, rows){
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });}
+
+    function getMaxOfArray(numArray) {
+        return Math.max.apply(null, numArray);
+    }
+
+    var data = [];
+    var startLongitude = unpack(rows, 'Starty');
+    var endLongitude = unpack(rows, 'Endy');
+    var startLat = unpack(rows, 'Startx');
+    var endLat = unpack(rows, 'Endx');
+
+    for ( var i = 0 ; i < startLongitude.length; i++ ) {
+        var opacityValue = 0.2;
+
+        var result = {
+            type: 'scattergeo',
+            lon: [ startLongitude[i] , endLongitude[i] ],
+            lat: [ startLat[i] , endLat[i] ],
+            mode: 'lines',
+            line: {
+                width: 2,
+                color: 'red'
+            },
+            opacity: opacityValue
+        };
+
+        data.push(result);
+    };
+
+    var layout = {
+        title: 'Importing Flights Announced Before 20-Mar-2020',
+        showlegend: false,
+        geo:{
+            scope: 'north america + europe',
+            projection: {
+                type: 'azimuthal equal area'
+            },
+            showland: true,
+            landcolor: 'rgb(243,243,243)',
+            countrycolor: 'rgb(204,204,204)'
+        },
+        width: window.innerWidth,
+        height: 600
+    };
+
+    Plotly.newPlot("myGeo2", data, layout, {showLink: false});
+
+});
