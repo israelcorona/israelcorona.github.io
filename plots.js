@@ -78,7 +78,7 @@ var layout = {
     coloraxis: {colorscale: "Viridis"}, title: {text: "Exposure of Confirmed Coronavirus Patients (most recent 14 days)"},
     width: window.innerWidth, height: 600, margin: {t: 50, b: 50}};
 
-var config = {mapboxAccessToken: "pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw"};
+var config = {mapboxAccessToken: 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw'};
 
 Plotly.newPlot('myDiv', data, layout, config);
 })
