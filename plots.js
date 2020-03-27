@@ -76,7 +76,7 @@ var data = [{
 var layout = {
     mapbox: {center: {lon: 34.804733, lat: 31.828284}, style: "outdoors", zoom: 8},
     coloraxis: {colorscale: "Viridis"}, title: {text: "Exposure of Confirmed Coronavirus Patients (most recent 14 days)"},
-    width: window.innerWidth, height: 600, margin: {t: 50, b: 50}};
+    autosize:true, margin: {t: 50, b: 50}};
 
 var config = {mapboxAccessToken: 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw'};
 
@@ -97,6 +97,8 @@ Plotly.d3.csv('newerflights.csv', function(err, rows){
     var endLongitude = unpack(rows, 'Endy');
     var startLat = unpack(rows, 'Startx');
     var endLat = unpack(rows, 'Endx');
+    var startCity = unpack(rows, 'StartCity');
+    var endCity = unpack(rows, 'EndCity');
 
     for ( var i = 0 ; i < startLongitude.length; i++ ) {
         var opacityValue = 0.2;
@@ -105,6 +107,8 @@ Plotly.d3.csv('newerflights.csv', function(err, rows){
             type: 'scattergeo',
             lon: [ startLongitude[i] , endLongitude[i] ],
             lat: [ startLat[i] , endLat[i] ],
+            hoverinfo: 'text',
+            text: startCity[i]+' to '+endCity[i],
             mode: 'lines',
             line: {
                 width: 2,
@@ -114,7 +118,7 @@ Plotly.d3.csv('newerflights.csv', function(err, rows){
         };
 
         data.push(result);
-    };
+    }
 
     var layout = {
         title: 'Importing Flights Announced After 20-Mar-2020',
@@ -122,14 +126,13 @@ Plotly.d3.csv('newerflights.csv', function(err, rows){
         geo:{
             scope: 'north america + europe',
             projection: {
-                type: 'azimuthal equal area'
+                type: 'orthographic'
             },
             showland: true,
             landcolor: 'rgb(243,243,243)',
             countrycolor: 'rgb(204,204,204)'
         },
-        width: window.innerWidth,
-        height: 600
+        autosize:true
     };
 
     Plotly.newPlot("myGeo1", data, layout, {showLink: false});
@@ -149,6 +152,8 @@ Plotly.d3.csv('olderflights.csv', function(err, rows){
     var endLongitude = unpack(rows, 'Endy');
     var startLat = unpack(rows, 'Startx');
     var endLat = unpack(rows, 'Endx');
+    var startCity = unpack(rows, 'StartCity');
+    var endCity = unpack(rows, 'EndCity');
 
     for ( var i = 0 ; i < startLongitude.length; i++ ) {
         var opacityValue = 0.2;
@@ -157,6 +162,8 @@ Plotly.d3.csv('olderflights.csv', function(err, rows){
             type: 'scattergeo',
             lon: [ startLongitude[i] , endLongitude[i] ],
             lat: [ startLat[i] , endLat[i] ],
+            hoverinfo: 'text',
+            text: startCity[i]+' to '+endCity[i],
             mode: 'lines',
             line: {
                 width: 2,
@@ -166,7 +173,7 @@ Plotly.d3.csv('olderflights.csv', function(err, rows){
         };
 
         data.push(result);
-    };
+    }
 
     var layout = {
         title: 'Importing Flights Announced Before 20-Mar-2020',
@@ -174,14 +181,13 @@ Plotly.d3.csv('olderflights.csv', function(err, rows){
         geo:{
             scope: 'north america + europe',
             projection: {
-                type: 'azimuthal equal area'
+                type: 'orthographic'
             },
             showland: true,
             landcolor: 'rgb(243,243,243)',
             countrycolor: 'rgb(204,204,204)'
         },
-        width: window.innerWidth,
-        height: 600
+        autosize:true
     };
 
     Plotly.newPlot("myGeo2", data, layout, {showLink: false});
