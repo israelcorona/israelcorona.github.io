@@ -193,3 +193,52 @@ Plotly.d3.csv('olderflights.csv', function(err, rows){
     Plotly.newPlot("myGeo2", data, layout, {showLink: false});
 
 });
+
+Plotly.d3.csv('bubblechart.csv', function(err, rows){
+
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });
+    }
+
+    var cityName = unpack(rows, 'CITY'),
+        cityPop = unpack(rows, 'Size'),
+        cityLat = unpack(rows, 'x'),
+        cityLon = unpack(rows, 'y'),
+        color = [,"rgb(255,65,54)","rgb(133,20,75)","rgb(255,133,27)","lightgrey"],
+        citySize = [],
+        hoverText = [],
+        scale = 1;
+
+    for ( var i = 0 ; i < cityPop.length; i++) {
+        var currentSize = cityPop[i] / scale;
+        var currentText = cityName[i] + " Exposure: " + cityPop[i];
+        citySize.push(currentSize);
+        hoverText.push(currentText);
+    }
+
+    var data = [{
+        type: 'scattermapbox',
+        lat: cityLat,
+        lon: cityLon,
+        hoverinfo: 'text',
+        text: hoverText,
+        marker: {
+            size: citySize,
+            line: {
+                color: 'black',
+                width: 2
+            },
+        }
+    }];
+
+   var layout = {
+    mapbox: {center: {lon: 34.804733, lat: 31.828284}, style: "outdoors", zoom: 8},
+    coloraxis: {colorscale: "Viridis"}, title: {text: "Total Number of Exposures in Israeli Cities"},
+    autosize:true, margin: {t: 50, b: 50}};
+    
+    var config = {mapboxAccessToken: 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw'};
+
+    Plotly.newPlot("myExposure", data, layout, config);
+
+});
+
