@@ -61,3 +61,26 @@ xmlhttp.onreadystatechange = function() {
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 
+
+Plotly.d3.csv('csvfinalMar26.csv',
+  function(err, rows){function unpack(rows, key) {return rows.map(function(row){ return row[key];
+})};
+
+var data = [{
+  lon: unpack(rows, 'x'), lat: unpack(rows, 'y'), radius:20,
+  z: unpack(rows, 'Hours'), type: "densitymapbox", coloraxis: 'coloraxis',
+  hoverinfo: 'skip'}];
+                      
+
+
+var layout = {
+    mapbox: {center: {lon: 34.804733, lat: 31.828284}, style: "outdoors", zoom: 8},
+    coloraxis: {colorscale: "Viridis"}, title: {text: "Exposure of Confirmed Coronavirus Patients (most recent 14 days)"},
+    width: window.innerWidth, height: 600, margin: {t: 50, b: 50}};
+
+var config = {mapboxAccessToken: "pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw"};
+
+Plotly.newPlot('myDiv', data, layout, config);
+})
+
+
