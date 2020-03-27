@@ -55,7 +55,8 @@ xmlhttp.onreadystatechange = function() {
         var growthspeed = [ speedofgrowth ];
         
         Plotly.newPlot('totalcases', data, layout);
-        Plotly.newPlot('growthspeed', growthspeed, speedexponent);
+        Plotly.newPlot('growthspeed', growthspeed, speedexponent); 
+        
     }
 };
 xmlhttp.open("GET", url, true);
@@ -80,7 +81,8 @@ var layout = {
 
 var config = {mapboxAccessToken: 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw'};
 
-Plotly.newPlot('myDiv', data, layout, config);
+    Plotly.newPlot('myDiv', data, layout, config);
+
 })
 
 
@@ -133,8 +135,8 @@ Plotly.d3.csv('newerflights.csv', function(err, rows){
             countrycolor: 'rgb(204,204,204)'
         },
         autosize:true
-    };
 
+    };
     Plotly.newPlot("myGeo1", data, layout, {showLink: false});
 
 });
@@ -189,12 +191,12 @@ Plotly.d3.csv('olderflights.csv', function(err, rows){
         },
         autosize:true
     };
-
     Plotly.newPlot("myGeo2", data, layout, {showLink: false});
+    
 
 });
 
-Plotly.d3.csv('bubblechart.csv', function(err, rows){
+    Plotly.d3.csv('bubblechart.csv', function(err, rows){
 
     function unpack(rows, key) {
         return rows.map(function(row) { return row[key]; });
@@ -238,7 +240,7 @@ Plotly.d3.csv('bubblechart.csv', function(err, rows){
     
     var config = {mapboxAccessToken: 'pk.eyJ1IjoidHlvdGFrdWtpIiwiYSI6ImNrN2o0anFoazAybWgzbm83MnRsaW93aGgifQ.RUlPKLHV5_2JXPPVr8gLgw'};
 
-    Plotly.newPlot("myExposure", data, layout, config);
+        Plotly.newPlot("myExposure", data, layout, config);
 
 });
 
